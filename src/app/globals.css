@@ -1,0 +1,5 @@
+@import "tailwindcss";
+/* Brand colours, fonts, utilities and base styles shared with the storefront. */
+@import "../../../shared/styles/theme.css";
+/* Class names used by the shared components (logo, product photos, collection art). */
+@source "../../../shared/ui";
