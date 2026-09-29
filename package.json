@@ -11,7 +11,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@emrix/shared": "0.1.0",
+    "@emrix/shared": "file:./shared",
     "lucide-react": "^1.48.0",
     "next": "16.3.6",
     "react": "19.2.8",

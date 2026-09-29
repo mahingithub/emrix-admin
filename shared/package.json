@@ -1,0 +1,33 @@
+{
+  "name": "@emrix/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Types, helpers, input rules and UI pieces used by the EMRIX frontend, admin panel and backend.",
+  "exports": {
+    "./ui/*": "./ui/*.tsx",
+    "./styles/*": "./styles/*",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "peerDependencies": {
+    "lucide-react": ">=1",
+    "next": ">=16",
+    "react": ">=19"
+  },
+  "peerDependenciesMeta": {
+    "lucide-react": {
+      "optional": true
+    },
+    "next": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  }
+}

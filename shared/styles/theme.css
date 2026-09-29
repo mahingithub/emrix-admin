@@ -1,0 +1,151 @@
+/* EMRIX brand theme for Tailwind v4, shared by the shop (frontend) and the admin panel.
+   Each app's globals.css imports it right after tailwindcss. */
+
+@theme {
+  --color-paper: #f4f1ea;
+  --color-paper-2: #e9e4d8;
+  --color-ink: #111116;
+  --color-ink-2: #1c1c24;
+  --color-shu: #e5322b;
+  --color-shu-dark: #b8231d;
+  --color-kin: #ffcf33;
+  /* Fixed in every theme: dark stages/scrims and the text that sits on them. */
+  --color-sumi: #0b0b0f;
+  --color-washi: #f4f1ea;
+  /* Raised surfaces (cards, inputs). White on paper; dark in the night theme. */
+  --color-card: #ffffff;
+
+  --shadow-panel: 5px 5px 0 0 var(--color-ink);
+  --shadow-panel-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-panel-shu: 5px 5px 0 0 var(--color-shu);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-reverse: marquee 38s linear infinite reverse;
+  --animate-shake: shake 0.4s ease-in-out;
+  --animate-pop: pop 0.35s cubic-bezier(0.2, 1.4, 0.4, 1);
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+  }
+  @keyframes pop {
+    from {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+/* Viewports tall enough for the full hero pitch on desktop. */
+@custom-variant tall (@media (min-height: 880px));
+/* Side-by-side layouts: desktops, plus landscape phones and zoomed-in laptops, where stacking
+   would leave no height for the artwork. */
+@custom-variant wide {
+  @media (min-width: 64rem), (orientation: landscape) and (min-width: 36rem) {
+    @slot;
+  }
+}
+/* Enough height for display-size titles */
+@custom-variant roomy (@media (min-height: 42rem));
+/* Short screens: landscape phones, desktops zoomed to 200% */
+@custom-variant short (@media (max-height: 34rem));
+
+@theme inline {
+  --font-sans: var(--font-inter), var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dela), var(--font-noto-jp), ui-sans-serif, sans-serif;
+  --font-jp: var(--font-noto-jp), "Hiragino Sans", sans-serif;
+  --font-bn: var(--font-hind), var(--font-inter), sans-serif;
+}
+
+/* Manga halftone dots. Tune with --dot-color / --dot-size. */
+@utility halftone {
+  background-image: radial-gradient(
+    circle at center,
+    var(--dot-color, rgb(17 17 22 / 0.13)) 1.1px,
+    transparent 1.7px
+  );
+  background-size: var(--dot-size, 10px) var(--dot-size, 10px);
+}
+
+/* Radial speed lines, like a manga impact frame. */
+@utility speedlines {
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    var(--line-color, rgb(17 17 22 / 0.06)) 0deg 2.2deg,
+    transparent 2.2deg 8deg
+  );
+}
+
+@utility text-outline {
+  -webkit-text-stroke: var(--stroke-w, 2px) var(--stroke-c, currentColor);
+  color: transparent;
+}
+
+@utility writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    /* Subtle washi-paper grain */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: var(--color-shu);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-shu);
+    outline-offset: 2px;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
